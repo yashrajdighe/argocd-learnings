@@ -1,0 +1,37 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: nginx
+spec:
+  generators:
+    - clusters:
+        selector:
+          matchLabels:
+            environment: common
+  template:
+    metadata:
+      name: nginx
+      labels:
+        environment: "{{ metadata.labels.environment }}"
+    spec:
+      project: default
+      sources:
+        - repoURL: git@github.com:yashrajdighe/argocd-learnings.git
+          targetRevision: main
+          path: charts/base
+          helm:
+            releaseName: nginx
+            valueFiles:
+              - $values/data/nginx/values.yaml
+        - repoURL: git@github.com:yashrajdighe/argocd-learnings.git
+          targetRevision: HEAD
+          ref: values
+      destination:
+        server: "{{url}}"
+        namespace: services
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true
