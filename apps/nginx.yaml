@@ -16,9 +16,8 @@ spec:
     spec:
       project: default
       sources:
-        - repoURL: git@github.com:yashrajdighe/argocd-learnings.git
-          targetRevision: main
-          path: charts/base
+        - repoURL: public.ecr.aws/d5d4a9b3/base
+          targetRevision: 0.1.0
           helm:
             releaseName: nginx
             valueFiles:
