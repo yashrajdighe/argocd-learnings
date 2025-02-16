@@ -16,8 +16,9 @@ spec:
     spec:
       project: default
       sources:
-        - repoURL: public.ecr.aws/d5d4a9b3/base
+        - repoURL: public.ecr.aws/d5d4a9b3
           targetRevision: 0.1.0
+          chart: base
           helm:
             releaseName: nginx
             valueFiles:
