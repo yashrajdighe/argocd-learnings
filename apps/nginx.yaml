@@ -24,7 +24,7 @@ spec:
             valueFiles:
               - $values/data/nginx/values.yaml
         - repoURL: git@github.com:yashrajdighe/argocd-learnings.git
-          targetRevision: values
+          targetRevision: main
           ref: values
       destination:
         name: "{{ name }}"
