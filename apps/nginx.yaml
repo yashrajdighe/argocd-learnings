@@ -27,7 +27,7 @@ spec:
           targetRevision: HEAD
           ref: values
       destination:
-        server: "{{url}}"
+        server: "{{ name }}"
         namespace: services
       syncPolicy:
         automated:
